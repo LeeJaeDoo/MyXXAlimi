@@ -1,0 +1,87 @@
+buildscript {
+	ext {
+		springBootVersion = '1.3.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'spring-boot' 
+apply plugin: 'war'
+apply plugin: 'idea'
+
+
+jar {
+    baseName = 'gs-securing-web'
+    version =  '0.1.0'
+}
+war {
+	baseName = 'XXAlimi'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	compile 'org.springframework.security:spring-security-taglibs:4.1.0.RELEASE'
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile 'log4j:log4j:1.2.17'
+	compile 'org.mybatis:mybatis:3.4.0'
+	compile 'org.mybatis:mybatis-spring:1.3.0'
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile 'org.springframework.security.oauth:spring-security-oauth2'
+	compile 'org.springframework.security:spring-security-web:4.0.4.RELEASE'
+	compile 'org.projectlombok:lombok:1.16.8'
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('rome:rome:1.0')
+	compile('org.springframework.boot:spring-boot-starter-mobile')
+	compile('org.springframework.session:spring-session')
+	compile('org.springframework.boot:spring-boot-starter-social-facebook')
+	compile('org.springframework.boot:spring-boot-starter-social-twitter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	runtime('com.h2database:h2')
+	runtime('mysql:mysql-connector-java')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.webjars.bower:jquery:2.2.2')
+	compile('org.webjars.bower:bootstrap:3.3.6')
+	compile('javax.servlet:jstl:1.2')
+	providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper:8.0.33')
+	compile('org.jsoup:jsoup:1.8.3')
+	compile('org.webjars.bower:bootstrap-sweetalert:0.4.5')
+	compile("org.springframework:spring-messaging")
+	compile('org.webjars.bower:sockjs-client:1.0.3')
+	compile('org.webjars.bower:stomp-websocket:2.3.4')
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+}
+
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.12'
+}
